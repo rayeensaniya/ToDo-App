@@ -8,14 +8,14 @@ class AppTextField extends StatefulWidget {
    this.onFieldSubmitted,
    this.focusNode,
    this.suffixIcon,
-   this.obsecureText = false,
+   this.isSecure = false,
    this.controller});
  final String? hinText;
  final Function(String)? onFieldSubmitted;
  final FocusNode? focusNode;
  final TextInputType? keyboardType;
  final String labelText;
- final bool obsecureText;
+ final bool isSecure;
  final Icon? suffixIcon;
  final int? maxLength;
  final String? Function(String?)? validator;
@@ -29,7 +29,7 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     return  TextFormField(
       keyboardType: widget.keyboardType,
-      obscureText: widget.obsecureText,
+      obscureText: widget.isSecure,
       onFieldSubmitted: widget.onFieldSubmitted,
       focusNode:widget.focusNode ,
       maxLength: widget.maxLength,
