@@ -1,3 +1,5 @@
+import '../constant/regex_constant.dart';
+
 class SignUpBloc{
   String? nameValidator({String? name}) {
     if (name == null || name.trim().isEmpty) {
@@ -6,8 +8,11 @@ class SignUpBloc{
     return null;
   }
   String? emailValidator({String?email}){
+
     if(email == null || email.trim().isEmpty){
       return 'Email is required';
+    }else if(!RegexConst.emailRegex.hasMatch(email)){
+      return 'Invalid Email';
     }
     return  null;
   }
@@ -25,13 +30,12 @@ class SignUpBloc{
     }
     return  null;
   }
-  String? confirmPassword({String?confirm}){
+  String? confirmPassword({String?confirm,String?password}){
     if(confirm == null || confirm.trim().isEmpty){
       return 'Please Confirm Your Password';
+    }else if(confirm != password){
+      return 'Password do not match';
     }
     return  null;
   }
 }
-
-
-

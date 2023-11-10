@@ -34,6 +34,7 @@ class _AppTextFieldState extends State<AppTextField> {
       focusNode:widget.focusNode ,
       maxLength: widget.maxLength,
       controller: widget.controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
       decoration: InputDecoration(
         suffixIcon: widget.suffixIcon,
