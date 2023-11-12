@@ -38,26 +38,24 @@ class _AppCardState extends State<AppCard> {
                             IconButton(onPressed: () {
                               widget.dashboardBloc.isHideFab.add(false);
                               Navigator.pop(context);
-                            }, icon: Icon(Icons.cancel_outlined))
+                            }, icon: const Icon(Icons.cancel_outlined))
                           ],
                         ),
-                        const Text('Description'),
+                        const Text('Description in flutter is a material design widget. It is always used in the Stateful Widget as it does not maintain a state of its own. We can use its onChanged property to interact or modify other widgets in the flutter app. Like most of the other flutter widgets, it also comes with many properties like activeColor, checkColor, mouseCursor, etc, to let developers have ',
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppButton(
-                              backgroundColor: Colors.white,
-                              width: 150,
-                              onpPressed: () {
+                          TextButton(onPressed: () {
 
-                              }, text: 'Delete',textColor: Colors.red,),
+                          }, child: const Text('Completed',style: TextStyle(color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),)),
+                            TextButton(onPressed: () {
 
-                            AppButton(
-                              backgroundColor: Colors.white,
-                              width: 150,
-                                onpPressed: () {
-
-                            }, text: 'Completed',textColor: Colors.black),
+                            }, child: const Text('Delete',style: TextStyle(color: Colors.red,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),))
                           ],
                         )
                       ],
