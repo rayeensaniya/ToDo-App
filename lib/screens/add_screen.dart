@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:todo_app/bloc/add_bloc.dart';
+import 'package:todo_app/utils/app_diaogue.dart';
 import 'package:todo_app/widget/button.dart';
 import 'package:todo_app/widget/text_field.dart';
 
@@ -22,7 +22,7 @@ class _AddScreenState extends State<AddScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('ADD SCREEN', style: TextStyle(color: Colors.white)),
+        title: const Text('ADD SCREEN', style: TextStyle(color: Colors.white),),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -53,10 +53,8 @@ class _AddScreenState extends State<AddScreen> {
                     readOnly: true,
                     filled: true,
                     onTp: () async {
-                      final dateTime = await _selectDate();
-                      String dateFormatted =
-                          DateFormat('dd/MM/yyyy').format(dateTime!);
-                      dateController.text = dateFormatted;
+                      final dateTime = await AppDialog.selectDate(context);
+                      dateController.text = dateTime!;
                     },
                     suffixIcon: const Icon(Icons.calendar_today),
                   ),
@@ -75,13 +73,4 @@ class _AddScreenState extends State<AddScreen> {
     );
   }
 
-  Future<DateTime?> _selectDate() async {
-    DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2500),
-    );
-    return picked;
-  }
 }
