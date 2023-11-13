@@ -15,7 +15,6 @@ class _DashboardState extends State<Dashboard> {
   final dashBloc = DashboardBloc();
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     dashBloc.isChecked.close();
   }
@@ -38,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  AddScreen(),
+                          builder: (context) => const AddScreen(),
                         ));
                   },
                 );
@@ -47,11 +46,11 @@ class _DashboardState extends State<Dashboard> {
                       }
           ),
           appBar: AppBar(
-            bottom: const TabBar(labelColor: Colors.white,
+            bottom:  const TabBar(labelColor: Colors.white,
 
                 tabs: [
               Text('Completed'),
-              Text('Pending'),
+               Text('Pending'),
             ]),
             backgroundColor: Colors.black,
             title: const Center(
