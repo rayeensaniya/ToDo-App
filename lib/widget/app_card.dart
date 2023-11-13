@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/bloc/dashboard_bloc.dart';
-import 'package:todo_app/widget/button.dart';
 
 class AppCard extends StatefulWidget {
-  const AppCard({Key? key,required this.dashboardBloc}) : super(key: key);
-final DashboardBloc dashboardBloc;
+  const AppCard({Key? key, required this.dashboardBloc}) : super(key: key);
+  final DashboardBloc dashboardBloc;
+
   @override
   State<AppCard> createState() => _AppCardState();
 }
 
 class _AppCardState extends State<AppCard> {
-
-
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -23,45 +21,58 @@ class _AppCardState extends State<AppCard> {
               onTap: () {
                 widget.dashboardBloc.isHideFab.add(true);
                 showBottomSheet(
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Title'),
-                            IconButton(onPressed: () {
-                              widget.dashboardBloc.isHideFab.add(false);
-                              Navigator.pop(context);
-                            }, icon: const Icon(Icons.cancel_outlined))
-                          ],
-                        ),
-                        const Text('Description in flutter is a material design widget. It is always used in the Stateful Widget as it does not maintain a state of its own. We can use its onChanged property to interact or modify other widgets in the flutter app. Like most of the other flutter widgets, it also comes with many properties like activeColor, checkColor, mouseCursor, etc, to let developers have ',
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                          TextButton(onPressed: () {
-
-                          }, child: const Text('Completed',style: TextStyle(color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),)),
-                            TextButton(onPressed: () {
-
-                            }, child: const Text('Delete',style: TextStyle(color: Colors.red,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),))
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                );
+                    enableDrag: false,
+                    context: context,
+                    builder: (context) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text('Title'),
+                                  IconButton(
+                                      onPressed: () {
+                                        widget.dashboardBloc.isHideFab
+                                            .add(false);
+                                        Navigator.pop(context);
+                                      },
+                                      icon: const Icon(Icons.cancel_outlined))
+                                ],
+                              ),
+                              const Text(
+                                'Description in flutter is a material design widget. It is always used in the Stateful Widget as it does not maintain a state of its own. We can use its onChanged property to interact or modify other widgets in the flutter app. Like most of the other flutter widgets, it also comes with many properties like activeColor, checkColor, mouseCursor, etc, to let developers have ',
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: const Text(
+                                        'Completed',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: const Text(
+                                        'Delete',
+                                        style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ))
+                                ],
+                              )
+                            ],
+                          ),
+                        ));
               },
               child: Card(
                 color: Colors.white,
@@ -99,7 +110,8 @@ class _AppCardState extends State<AppCard> {
                                   return Checkbox(
                                     value: snapshot.data,
                                     onChanged: (value) {
-                                      widget.dashboardBloc.isChecked.add(value!);
+                                      widget.dashboardBloc.isChecked
+                                          .add(value!);
                                     },
                                   );
                                 }),
