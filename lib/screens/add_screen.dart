@@ -22,7 +22,10 @@ class _AddScreenState extends State<AddScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('ADD SCREEN', style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'ADD SCREEN',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -72,5 +75,4 @@ class _AddScreenState extends State<AddScreen> {
       ),
     );
   }
-
 }

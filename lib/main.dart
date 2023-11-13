@@ -13,16 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        tabBarTheme: TabBarTheme(
-          unselectedLabelColor: Colors.grey.shade50,
-
-          indicatorColor: Colors.white
-        )
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          tabBarTheme: TabBarTheme(
+              unselectedLabelColor: Colors.grey.shade50,
+              indicatorColor: Colors.white)),
       home: const Dashboard(),
     );
   }
 }
-

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'formattor.dart';
 
-class AppDialog{
+class AppDialog {
   static Future<String?> selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -12,8 +12,5 @@ class AppDialog{
     );
     final formattedDate = FormatarUtils.dateFormatted(picked!);
     return formattedDate;
-
   }
-
 }
-
