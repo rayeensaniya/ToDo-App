@@ -1,7 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/dashboard.dart';
+import 'package:todo_app/screens/log_in.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
           tabBarTheme: TabBarTheme(
               unselectedLabelColor: Colors.grey.shade50,
               indicatorColor: Colors.white)),
-      home: const Dashboard(),
+      home: const LogIn(),
     );
   }
 }

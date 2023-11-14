@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/bloc/signup_bloc.dart';
+import 'package:todo_app/firebase_auth/firebase_auth_services.dart';
 import 'package:todo_app/screens/dashboard.dart';
 import 'package:todo_app/widget/button.dart';
 import 'package:todo_app/widget/text_field.dart';
@@ -12,8 +16,6 @@ class SignUpScreen extends StatefulWidget {
 }
 final _formKey = GlobalKey<FormState>();
 final _signupBloc = SignUpBloc();
-final TextEditingController _password = TextEditingController();
-final TextEditingController _confirmPassword = TextEditingController();
 
 class _SignUpScreenState extends State<SignUpScreen> {
   late FocusNode nameFocus;
@@ -32,6 +34,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     confirmFocus = FocusNode();
   }
 
+  final FirebaseService auth = FirebaseService();
+
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
+final TextEditingController nameController = TextEditingController();
+final TextEditingController mobileController = TextEditingController();
+final TextEditingController emailController = TextEditingController();
    @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -51,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 AppTextField(labelText: 'Name',
+                  controller: nameController,
                   focusNode: nameFocus,
                   onFieldSubmitted: (p0) {
                     FocusScope.of(context).requestFocus(emailFocus);
@@ -60,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10,
                 ),
                 AppTextField(labelText: 'Email',
+                  controller:emailController ,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: emailFocus,
                   onFieldSubmitted: (p0) {
@@ -71,6 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10,
                 ),
                  AppTextField(labelText: 'Mobile no',
+                   controller: mobileController,
                    suffixIcon: const Icon(Icons.call),
                    validator: (value) => _signupBloc.mobileValidator(mobile: value) ,
                focusNode: mobileFocus,
@@ -81,6 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10,
                 ),
                 AppTextField(labelText: 'Password',
+
                   controller: _password,
                   onFieldSubmitted: (p0) {
                     FocusScope.of(context).requestFocus(confirmFocus);
@@ -106,10 +119,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 AppButton(
                     text: 'SIGN UP',
-                    onpPressed: () {
-         if(_formKey.currentState!.validate()){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Dashboard(),));
-         }}
+         onpPressed: signUp,
+         //             () {
+         // if(_formKey.currentState!.validate()){
+         //  Navigator.push(context, MaterialPageRoute(builder: (context) => const Dashboard(),));
+         // }}
                 ),
                 const SizedBox(
                   height: 10,
@@ -123,5 +137,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+  void signUp()async{
+     String name = nameController.text;
+     String email = emailController.text;
+     String mobile = mobileController.text;
+     String password = _password.text;
+     String confirmPassword = _confirmPassword.text;
+
+     User? user = await auth.signUpWithEmailAndPassword(email, password);
+     if(user != null){
+       print('User is successfully created');
+       Navigator.pushNamed(context, "/home");
+     }else{
+       print('some error happened');
+     }
   }
 }

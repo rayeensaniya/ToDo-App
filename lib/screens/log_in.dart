@@ -25,6 +25,8 @@ class _LogInState extends State<LogIn> {
     emailFocus = FocusNode();
     passwordFocus = FocusNode();
   }
+TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class _LogInState extends State<LogIn> {
                 ),
                 AppTextField(
                   focusNode: emailFocus,
+                  controller: emailController,
                   onFieldSubmitted: (p0) {
                     FocusScope.of(context).requestFocus(passwordFocus);
                   },
@@ -58,6 +61,7 @@ class _LogInState extends State<LogIn> {
                 const SizedBox(height: 15),
                 AppTextField(
                   focusNode: passwordFocus,
+                  controller: passwordController,
                   labelText: 'Password',
                   suffixIcon: const Icon(Icons.remove_red_eye_outlined),
                   validator: (value) => _loginBloc.passwordValidator(password: value),
@@ -114,5 +118,10 @@ class _LogInState extends State<LogIn> {
         ),
       ),
     );
+  }
+
+  void logIn()async{
+String email = emailController.text;
+String password = passwordController.text;
   }
 }
