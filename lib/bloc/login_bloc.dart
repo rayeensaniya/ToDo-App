@@ -17,5 +17,9 @@ class LoginBloc {
     return null;
   }
 
-
- }
+  String? name({String? name}) {
+    if (name == null || name.trim().isEmpty) {
+      return 'Please enter your name';
+    }
+  }
+}

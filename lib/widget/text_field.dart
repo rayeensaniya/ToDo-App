@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatefulWidget {
- const AppTextField({super.key,required this.labelText,this.validator,
-   this.readOnly,
-   this.onTp,
-   this.maxLength,
-   this.filled,
-    this.hinText,
-   this.keyboardType,
-   this.onFieldSubmitted,
-   this.maxLines,
-   this.focusNode,
-   this.suffixIcon,
-   this.alignLabelWithHint,
-   this.isSecure = false,
-   this.controller});
- final String? hinText;
- final Function(String)? onFieldSubmitted;
- final FocusNode? focusNode;
- final TextInputType? keyboardType;
- final String labelText;
- final bool isSecure;
- final Icon? suffixIcon;
- final bool? readOnly;
- final int? maxLength;
- final Function()? onTp;
- final String? Function(String?)? validator;
- final TextEditingController? controller;
- final int? maxLines;
- final bool? alignLabelWithHint;
- final bool? filled;
+  const AppTextField(
+      {super.key,
+      required this.labelText,
+      this.validator,
+      this.initialValue,
+      this.readOnly,
+      this.onTp,
+      this.maxLength,
+      this.filled,
+      this.hinText,
+      this.keyboardType,
+      this.onFieldSubmitted,
+      this.maxLines,
+      this.focusNode,
+      this.suffixIcon,
+      this.alignLabelWithHint,
+      this.isSecure = false,
+      this.controller});
+
+  final String? hinText;
+  final Function(String)? onFieldSubmitted;
+  final FocusNode? focusNode;
+  final TextInputType? keyboardType;
+  final String labelText;
+  final bool isSecure;
+  final Icon? suffixIcon;
+  final bool? readOnly;
+  final int? maxLength;
+  final Function()? onTp;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
+  final int? maxLines;
+  final bool? alignLabelWithHint;
+  final bool? filled;
+  final String? initialValue;
+
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
@@ -39,22 +46,23 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     return  TextFormField(
       keyboardType: widget.keyboardType,
-      readOnly: widget.readOnly??false,
+      initialValue: widget.initialValue,
+      readOnly: widget.readOnly ?? false,
       obscureText: widget.isSecure,
       onFieldSubmitted: widget.onFieldSubmitted,
-      focusNode:widget.focusNode ,
+      focusNode: widget.focusNode,
       maxLength: widget.maxLength,
       controller: widget.controller,
-      maxLines: widget.maxLines,
+      maxLines: widget.maxLines ?? 1,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
-      onTap:widget.onTp ,
+      onTap: widget.onTp,
       decoration: InputDecoration(
         alignLabelWithHint: widget.alignLabelWithHint,
         suffixIcon: widget.suffixIcon,
         hintText: widget.hinText,
         labelText: widget.labelText,
-     filled: widget.filled??false,
+        filled: widget.filled ?? false,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
         ),
